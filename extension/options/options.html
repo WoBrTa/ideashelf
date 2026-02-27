@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IdeaShelf Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>IdeaShelf Settings</h1>
+
+    <section>
+      <label for="inbox-path">Inbox Folder Path</label>
+      <input type="text" id="inbox-path" placeholder="~/IdeaShelf/inbox/">
+      <p class="hint">Where captured ideas are saved as JSON files.</p>
+    </section>
+
+    <section>
+      <label>Keyboard Shortcut</label>
+      <p class="shortcut-display" id="shortcut-display">Cmd+Shift+S (Mac) / Ctrl+Shift+S</p>
+      <p class="hint">Change in chrome://extensions/shortcuts</p>
+    </section>
+
+    <section>
+      <label class="toggle-label">
+        <input type="checkbox" id="notifications-toggle" checked>
+        <span>Show notification on capture</span>
+      </label>
+    </section>
+
+    <section>
+      <label class="toggle-label">
+        <input type="checkbox" id="auto-note-toggle">
+        <span>Prompt for note on each capture</span>
+      </label>
+    </section>
+
+    <button id="save-btn" type="button">Save Settings</button>
+
+    <div id="status" class="status hidden"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

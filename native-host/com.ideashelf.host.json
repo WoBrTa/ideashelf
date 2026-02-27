@@ -1,0 +1,9 @@
+{
+  "name": "com.ideashelf.host",
+  "description": "IdeaShelf native messaging host for local file writes",
+  "path": "/PLACEHOLDER/native-host/ideashelf_host.py",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://EXTENSION_ID_PLACEHOLDER/"
+  ]
+}

@@ -1,0 +1,27 @@
+# IdeaShelf Configuration
+#
+# Copy this file to ~/IdeaShelf/config.yaml and customize as needed.
+
+# Where processed markdown files are written
+output_folder: ~/IdeaShelf/ideas/
+
+# Where raw JSON captures are read from (written by the Chrome extension)
+# inbox_folder: ~/IdeaShelf/inbox/
+
+# Taxonomy for tagging (used by AI runtime for classification)
+taxonomy:
+  types:
+    - metaphor
+    - exercise
+    - correction
+    - concept
+    - reference
+    - positioning
+    - example
+    - insight
+  categories: []    # Add your own: [ai-development, training, research, ...]
+  themes: []        # Add your own: [scaffolding, architecture, ...]
+
+# Default values for new captures
+defaults:
+  status: raw
