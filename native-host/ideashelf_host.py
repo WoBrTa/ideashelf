@@ -11,6 +11,7 @@ No external dependencies. Python 3 stdlib only.
 
 import json
 import os
+import re
 import struct
 import sys
 
@@ -82,12 +83,23 @@ def ensure_inbox(inbox_path):
         return False, f"Cannot create inbox directory: {e}"
 
 
+def sanitize_id(raw_id):
+    """Sanitize a capture ID for safe use as a filename.
+
+    Strips path separators and any characters that aren't alphanumeric,
+    hyphens, or underscores. Prevents path traversal attacks.
+    """
+    safe = os.path.basename(str(raw_id))
+    safe = re.sub(r"[^a-zA-Z0-9\-_]", "", safe)
+    return safe or "unknown"
+
+
 def write_capture(payload, inbox_path):
     """Write the capture payload as a JSON file in the inbox.
 
     Returns (success, error_message, filepath).
     """
-    capture_id = payload.get("id", "unknown")
+    capture_id = sanitize_id(payload.get("id", "unknown"))
     filename = f"{capture_id}.json"
     filepath = os.path.join(inbox_path, filename)
 

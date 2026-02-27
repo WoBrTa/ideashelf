@@ -38,6 +38,7 @@ saveBtn.addEventListener("click", () => {
       {
         type: "capture-quick-note",
         content: content,
+        captureMethod: "popup",
         sourceUrl: tab.url || "",
         sourceTitle: tab.title || "",
         userNote: "",

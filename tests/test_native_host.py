@@ -187,6 +187,26 @@ class TestWriteCapture:
             files = os.listdir(inbox)
             assert len(files) == 5
 
+    def test_path_traversal_id_is_sanitized(self):
+        """IDs with path traversal characters must not write outside inbox."""
+        with tempfile.TemporaryDirectory() as inbox:
+            payload = make_payload(id="../../etc/evil")
+            ok, err, filepath = ideashelf_host.write_capture(payload, inbox)
+            assert ok is True
+            # File must be inside the inbox, not outside it
+            assert os.path.dirname(os.path.abspath(filepath)) == os.path.abspath(inbox)
+            assert ".." not in os.path.basename(filepath)
+            assert "/" not in os.path.basename(filepath)
+
+    def test_sanitize_id_strips_dangerous_chars(self):
+        """sanitize_id should strip slashes, dots, and special chars."""
+        # os.path.basename strips the path, regex strips remaining unsafe chars
+        assert ideashelf_host.sanitize_id("../../etc/passwd") == "passwd"
+        assert ideashelf_host.sanitize_id("normal-uuid-1234") == "normal-uuid-1234"
+        assert ideashelf_host.sanitize_id("has spaces!@#") == "hasspaces"
+        assert ideashelf_host.sanitize_id("") == "unknown"
+        assert ideashelf_host.sanitize_id("...") == "unknown"
+
     def test_malformed_json_in_read_message(self):
         """Malformed JSON should not crash the host."""
         # Test validate_payload with various bad inputs

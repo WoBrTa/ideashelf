@@ -54,7 +54,7 @@ cd native-host
 |--------|-----|-------------|
 | Context menu | Select text, right-click > "Save to IdeaShelf" | `text_selection` |
 | Popup | Click extension icon, type/paste, click Save | `quick_note` |
-| Keyboard shortcut | `Cmd+Shift+S` (Mac) / `Ctrl+Shift+S` | `text_selection` or `bookmark` |
+| Keyboard shortcut | `Cmd+Shift+S` (Mac) / `Ctrl+Shift+S` — opens popup with selected text pre-filled | `quick_note` |
 
 ## Project Structure
 
